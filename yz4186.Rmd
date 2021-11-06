@@ -1,0 +1,23 @@
+---
+title: "Yunxi Zhang's website"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Introduction
+
+[Academic and professional experience](experience.html)
+
+### My contact information
+
+*[Github](https://github.com/Yunxizhang99)
+
+*[email](https://outlook.office.com/mail/inbox)
+
+*[Linkedin](https://www.linkedin.com/in/yunxi-zhang-2b5066225/)
