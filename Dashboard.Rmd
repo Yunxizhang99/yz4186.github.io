@@ -1,0 +1,74 @@
+---
+title: "Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+    source: embed
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(p8105.datasets)
+library(plotly)
+```
+
+## load the data
+
+```{r}
+
+data("ny_noaa")
+
+ny_noaa =
+  ny_noaa %>% 
+  filter(
+    !is.na(prcp), 
+    !is.na(tmax), 
+    !is.na(tmin),
+    !is.na(snow),
+    !is.na(snwd),
+id  == 'USC00300023') %>% 
+  mutate(
+    tmax = as.numeric(tmax),
+    tmin = as.numeric(tmin),
+    snwd = as.numeric(snwd)
+  )
+
+
+```
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+ny_noaa %>% 
+  plot_ly(x = ~tmin, y = ~tmax, type = "scatter", mode = "markers", color = ~snwd, text = ~snow)
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+ny_noaa %>% 
+  plot_ly(y = ~tmin, x = ~snwd, type = "box", color = ~snwd,
+          colors = "viridis")
+```
+
+
+### Chart C
+
+```{r}
+ny_noaa %>% 
+  count(snwd) %>% 
+  plot_ly(x = ~snwd, y = ~n, type = "bar", color = ~snwd, colors = "viridis")
+```
+
+
+
+
+
+
